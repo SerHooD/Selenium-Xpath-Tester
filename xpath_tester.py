@@ -6,17 +6,14 @@ from selenium.webdriver.support import expected_conditions as EC
 
 def test_xpath(url, xpath):
     try:
-        # Tarayıcıyı başlat
-        driver = webdriver.Chrome()
-        driver.get(url)
+    
+        browser = webdriver.Chrome()
+        browser.get(url)
 
-        # Elementlerin tamamen yüklenmesini bekleyin (isteğe bağlı)
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_all_elements_located((By.XPATH, xpath))
-        )
+        
+        WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.XPATH, xpath)))
 
-        # Elementleri bul
-        elements = driver.find_elements(By.XPATH, xpath)
+        elements = browser.find_elements(By.XPATH, xpath)
         if not elements:
             print(f"No elements found for XPath: {xpath}")
         else:
@@ -30,10 +27,10 @@ def test_xpath(url, xpath):
         print(f"Timeout while waiting for elements for XPath: {xpath}\n{str(e)}")
     finally:
         # Tarayıcıyı kapat
-        driver.quit()
+        browser.quit()
 
-# Test etmek için URL ve XPath ifadesini girin
-url = "https://x.com/SirSerHooD/followers"
-xpath = "/html/body/div[1]/div/div/div[2]/main/div/div/div/div/div/section/div/div/div[1]"
+
+url = "URL" #change here
+xpath = "XPATH" #change here too
 
 test_xpath(url, xpath)
